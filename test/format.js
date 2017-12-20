@@ -1,15 +1,5 @@
 import test from 'ava'
 import { parse, parseDefaults } from '../'
-import { formatAttributes } from '../lib/format'
-
-test('formatAttributes() should return a key-value array', t => {
-  const attrs = ['foo="bar"', 'disabled', "cake='man'"]
-  t.deepEqual(formatAttributes(attrs), [
-    { key: 'foo', value: 'bar' },
-    { key: 'disabled', value: null },
-    { key: 'cake', value: 'man' }
-  ])
-})
 
 /*
 These tests ensure the parser and v1 formatting align.
@@ -25,12 +15,12 @@ test('parse() should pass the Hello World case', t => {
     {
       type: 'node',
       name: 'div',
-      attrs: [],
+      attrs: {},
       children: [
         {
           type: 'node',
           name: 'h1',
-          attrs: [],
+          attrs: {},
           children: [
             {
               type: 'text',
@@ -51,22 +41,14 @@ test('parse() should work for mixed attrs', t => {
     {
       type: 'node',
       name: 'div',
-      attrs: [
-        {
-          key: 'class',
-          value: 'section widget'
-        }
-      ],
+      attrs: {
+        class: 'section widget'
+      },
       children: [
         {
           type: 'node',
           name: 'b',
-          attrs: [
-            {
-              key: 'disabled',
-              value: null
-            }
-          ],
+          attrs: {},
           children: [
             {
               type: 'text',
@@ -77,7 +59,7 @@ test('parse() should work for mixed attrs', t => {
         {
           type: 'node',
           name: 'p',
-          attrs: [],
+          attrs: {},
           children: [
             {
               type: 'text',
@@ -97,7 +79,7 @@ test('parse() should work for commented html', t => {
     {
       type: 'node',
       name: 'b',
-      attrs: [],
+      attrs: {},
       children: [
         // {
         //   type: 'comment',
@@ -120,12 +102,9 @@ test('parse() should work for style properties', t => {
     {
       type: 'node',
       name: 'div',
-      attrs: [
-        {
-          key: 'style',
-          value: 'width: 360px; height: 120px; background-color: #fff'
-        }
-      ],
+      attrs: {
+        style: 'width: 360px; height: 120px; background-color: #fff'
+      },
       children: []
     }
   ]
@@ -138,20 +117,7 @@ test('parse() should work on data-* attrs', t => {
     {
       type: 'node',
       name: 'div',
-      attrs: [
-        {
-          key: 'data-num',
-          value: '0'
-        },
-        {
-          key: 'data-word',
-          value: 'poop'
-        },
-        {
-          key: 'data-cake',
-          value: '2'
-        }
-      ],
+      attrs: {},
       children: []
     }
   ]
@@ -164,7 +130,7 @@ test('should work on unclosed tags', t => {
     {
       type: 'node',
       name: 'p',
-      attrs: [],
+      attrs: {},
       children: [
         {
           type: 'text',
@@ -175,7 +141,7 @@ test('should work on unclosed tags', t => {
     {
       type: 'node',
       name: 'p',
-      attrs: [],
+      attrs: {},
       children: [
         {
           type: 'text',
@@ -193,12 +159,7 @@ test('should not set custom attrs to zeroes', t => {
     {
       type: 'node',
       name: 'div',
-      attrs: [
-        {
-          key: 'custom-attr',
-          value: ''
-        }
-      ],
+      attrs: {},
       children: []
     }
   ]
@@ -212,7 +173,7 @@ test('custom tags should appear in the ast', t => {
       {
         type: 'node',
         name: 'div',
-        attrs: [],
+        attrs: {},
         children: [
           {
             type: 'text',
@@ -230,12 +191,12 @@ test('custom tags should appear in the ast', t => {
       {
         type: 'node',
         name: 'div',
-        attrs: [],
+        attrs: {},
         children: [
           {
             type: 'node',
             name: 'h1',
-            attrs: [],
+            attrs: {},
             children: [
               {
                 type: 'text',
@@ -246,7 +207,7 @@ test('custom tags should appear in the ast', t => {
           {
             type: 'node',
             name: 'div',
-            attrs: [],
+            attrs: {},
             children: []
           }
         ]

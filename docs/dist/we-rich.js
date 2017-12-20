@@ -99,12 +99,17 @@ function format(nodes, options) {
 }
 
 function formatAttributes(attributes) {
-  return attributes.map(function (attribute) {
+  var attrs = {};
+  attributes.map(function (attribute) {
     var parts = splitHead(attribute.trim(), '=');
     var key = parts[0];
     var value = typeof parts[1] === 'string' ? unquote(parts[1]) : null;
+    if (key === 'style' || key === 'class' || key === 'src') {
+      attrs[key] = value;
+    }
     return { key: key, value: value };
   });
+  return attrs;
 }
 
 },{}],3:[function(require,module,exports){
@@ -573,7 +578,11 @@ exports.toHTML = toHTML;
 var _compat = require('./compat');
 
 function formatAttributes(attrs) {
-  return attrs.reduce(function (attrs, attribute) {
+  var attrsArray = [];
+  for (var k in attrs) {
+    attrsArray.push({ key: k, value: attrs[k] });
+  }
+  return attrsArray.reduce(function (attrs, attribute) {
     var key = attribute.key,
         value = attribute.value;
 

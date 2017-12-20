@@ -1,7 +1,11 @@
 import { arrayIncludes } from './compat'
 
 export function formatAttributes (attrs) {
-  return attrs.reduce((attrs, attribute) => {
+  var attrsArray = []
+  for (var k in attrs) {
+    attrsArray.push({ key: k, value: attrs[k] })
+  }
+  return attrsArray.reduce((attrs, attribute) => {
     const { key, value } = attribute
     if (value === null) {
       return `${attrs} ${key}`

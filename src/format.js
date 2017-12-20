@@ -37,10 +37,15 @@ export function format (nodes, options) {
 }
 
 export function formatAttributes (attributes) {
-  return attributes.map(attribute => {
+  let attrs = {}
+  attributes.map(attribute => {
     const parts = splitHead(attribute.trim(), '=')
     const key = parts[0]
     const value = typeof parts[1] === 'string' ? unquote(parts[1]) : null
+    if (key === 'style' || key === 'class' || key === 'src') {
+      attrs[key] = value
+    }
     return { key, value }
   })
+  return attrs
 }
