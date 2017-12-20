@@ -1,6 +1,7 @@
 # We Rich
 
 > Parse HTML into Weapp rich-text Nodes
+
 > HTML转小程序 rich-text 控件节点
 
 [![npm](https://img.shields.io/npm/v/himalaya.svg)](https://www.npmjs.com/package/we-rich)

@@ -24,7 +24,7 @@ test('parse() should pass the Hello World case', t => {
   const data = [
     {
       type: 'node',
-      name: 'html',
+      name: 'div',
       attrs: [],
       children: [
         {
@@ -211,7 +211,7 @@ test('custom tags should appear in the ast', t => {
     const data = [
       {
         type: 'node',
-        name: 'result',
+        name: 'div',
         attrs: [],
         children: [
           {
@@ -245,7 +245,7 @@ test('custom tags should appear in the ast', t => {
           },
           {
             type: 'node',
-            name: 'result',
+            name: 'div',
             attrs: [],
             children: []
           }

@@ -77,14 +77,15 @@ function unquote(str) {
   return str;
 }
 
-function format(nodes) {
+function format(nodes, options) {
   return nodes.map(function (node) {
     var type = node.type;
     if (type === 'element') {
       var tagName = node.tagName.toLowerCase();
+      var name = options.supportTags.indexOf(tagName) >= 0 ? tagName : 'div';
       var attributes = formatAttributes(node.attributes);
-      var children = format(node.children);
-      return { type: 'node', name: tagName, attrs: attributes, children: children };
+      var children = format(node.children, options);
+      return { type: 'node', name: name, attrs: attributes, children: children };
     }
 
     if (type === 'text') {
@@ -136,6 +137,7 @@ var parseDefaults = exports.parseDefaults = {
   voidTags: _tags.voidTags,
   closingTags: _tags.closingTags,
   childlessTags: _tags.childlessTags,
+  supportTags: _tags.supportTags,
   closingTagAncestorBreakers: _tags.closingTagAncestorBreakers
 };
 
@@ -643,6 +645,8 @@ var closingTagAncestorBreakers = exports.closingTagAncestorBreakers = {
     For example: <img> does not need </img>
   */
 };var voidTags = exports.voidTags = ['!doctype', 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+
+var supportTags = exports.supportTags = ['a', 'abbr', 'b', 'blockquote', 'br', 'code', 'col', 'colgroup', 'dd', 'del', 'div', 'dl', 'dt', 'em', 'fieldset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'ins', 'label', 'legend', 'li', 'ol', 'p', 'q', 'span', 'strong', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul'];
 
 },{}]},{},[3])(3)
 });

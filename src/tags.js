@@ -9,8 +9,21 @@ export const childlessTags = ['style', 'script', 'template']
   For example: <p>Outer<p>Inner is <p>Outer</p><p>Inner</p>
 */
 export const closingTags = [
-  'html', 'head', 'body', 'p', 'dt', 'dd', 'li', 'option',
-  'thead', 'th', 'tbody', 'tr', 'td', 'tfoot', 'colgroup'
+  'html',
+  'head',
+  'body',
+  'p',
+  'dt',
+  'dd',
+  'li',
+  'option',
+  'thead',
+  'th',
+  'tbody',
+  'tr',
+  'td',
+  'tfoot',
+  'colgroup'
 ]
 
 /*
@@ -36,7 +49,67 @@ export const closingTagAncestorBreakers = {
   For example: <img> does not need </img>
 */
 export const voidTags = [
-  '!doctype', 'area', 'base', 'br', 'col', 'command',
-  'embed', 'hr', 'img', 'input', 'keygen', 'link',
-  'meta', 'param', 'source', 'track', 'wbr'
+  '!doctype',
+  'area',
+  'base',
+  'br',
+  'col',
+  'command',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'keygen',
+  'link',
+  'meta',
+  'param',
+  'source',
+  'track',
+  'wbr'
+]
+
+export const supportTags = [
+  'a',
+  'abbr',
+  'b',
+  'blockquote',
+  'br',
+  'code',
+  'col',
+  'colgroup',
+  'dd',
+  'del',
+  'div',
+  'dl',
+  'dt',
+  'em',
+  'fieldset',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'hr',
+  'i',
+  'img',
+  'ins',
+  'label',
+  'legend',
+  'li',
+  'ol',
+  'p',
+  'q',
+  'span',
+  'strong',
+  'sub',
+  'sup',
+  'table',
+  'tbody',
+  'td',
+  'tfoot',
+  'th',
+  'thead',
+  'tr',
+  'ul'
 ]

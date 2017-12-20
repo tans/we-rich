@@ -15,10 +15,10 @@ test('stringify() should handle simple conversions', t => {
 
 test('stringify() should work for void elements', t => {
   const meta = "<meta charset='utf8'>"
-  t.is(stringify(parse(meta)), meta)
+  t.is(stringify(parse(meta)), "<div charset='utf8'></div>")
 
   const link = "<link rel='stylesheet' href='file.css'>"
-  t.is(stringify(parse(link)), link)
+  t.is(stringify(parse(link)), "<div rel='stylesheet' href='file.css'></div>")
 })
 
 test('stringify() should build the class attribute properly', t => {
@@ -47,7 +47,12 @@ test('stringify() should preserve whitespace', t => {
     '    <h1>    Document    </h1>',
     '</html>   '
   ].join('\n')
-  t.is(stringify(parse(html)), html)
+  const result = [
+    '<div>    ',
+    '    <h1>    Document    </h1>',
+    '</div>   '
+  ].join('\n')
+  t.is(stringify(parse(html)), result)
 })
 
 test('formatAttributes should stringify attribute lists correctly', t => {

@@ -1,11 +1,12 @@
 import lexer from './lexer'
 import parser from './parser'
-import {format} from './format'
-import {toHTML} from './stringify'
+import { format } from './format'
+import { toHTML } from './stringify'
 import {
   voidTags,
   closingTags,
   childlessTags,
+  supportTags,
   closingTagAncestorBreakers
 } from './tags'
 
@@ -13,6 +14,7 @@ export const parseDefaults = {
   voidTags,
   closingTags,
   childlessTags,
+  supportTags,
   closingTagAncestorBreakers
 }
 
