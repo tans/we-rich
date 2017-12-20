@@ -1,7 +1,7 @@
 {
   "name": "we-rich",
   "description": "Parse HTML into Weapp rich-text Nodes",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "tan <369600584@qq.com>",
   "ava": {
     "require": [
