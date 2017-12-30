@@ -11,82 +11,63 @@
 ### Node
 ```bash安装依赖
 npm install we-rich
+
+const weRich = require('we-rich');
+var nodes = weRich.parse(html);
+
 ```
-
-```js
-import fs from 'fs'
-import {parse} from 'we-rich'
-const html = fs.readFileSync('/webpage.html', {encoding: 'utf8'})
-const json = parse(html)
-console.log('👉', json)
-```
-
-### Weapp
-下载 [we-rich.js](https://github.com/tans/we-rich/blob/master/docs/dist/himalaya.js)
-
-
-
-## Example Input/Output
+## 例子 Input/Output
 
 ```html
 <div class='post post-featured'>
-  <p>Himalaya parsed me...</p>
-  <!-- ...and I liked it. -->
+  <p>hello</p>
+  <section>world</section>
+  <img src="test.png" style="max-width:100%" />
 </div>
 ```
 
 ```js
-[{
-  type: 'element',
-  tagName: 'div',
-  attributes: [{
-    key: 'class',
-    value: 'post post-featured'
-  }],
-  children: [{
-    type: 'element',
-    tagName: 'p',
-    attributes: [],
-    children: [{
-      type: 'text',
-      content: 'Himalaya parsed me...'
-    }]
-  }, {
-    type: 'comment',
-    content: ' ...and I liked it. '
-  }]
-}]
+[
+  {
+    "type": "node",
+    "name": "div",
+    "attrs": {"class": "post post-featured"},
+    "children": [
+      {
+        "type": "node",
+        "name": "p",
+        "attrs": {},
+        "children": [{"type": "text", "text": "hello"} ]
+      },
+      {
+        "type": "node",
+        "name": "div",
+        "attrs": {},
+        "children": [{"type": "text", "text": "world"}
+        ]
+      },
+      {
+        "type": "node",
+        "name": "img",
+        "attrs": {"src": "test.png", "style": "max-width:100%"},
+        "children": []
+      }
+    ]
+  }
+]
 ```
 
-*Note:* In this example, text nodes consisting of whitespace are not shown for readability.
 
-## Features
+### 功能
+HTML into 微信小程序rich-text使用的nodes
 
-### Synchronous
-Himalaya transforms HTML into JSON, that's it. Himalaya is synchronous and does not require any complicated callbacks.
-
-### Handles Weirdness
-Himalaya handles a lot of HTML's fringe cases, like:
-- Closes unclosed tags `<p><b>...</p>`
-- Ignores extra closing tags `<span>...</b></span>`
-- Properly handles void tags like `<meta>` and `<img>`
-- Properly handles self-closing tags like `<input/>`
-- Handles `<!doctype>` and `<-- comments -->`
-- Does not parse the contents of `<script>`, `<style>`, and HTML5 `<template>` tags
-
-### Preserves Whitespace
-Himalaya does not cut corners and returns an accurate representation of the HTML supplied. To remove whitespace, post-process the JSON; check out [an example script](https://gist.github.com/andrejewski/773487d4f4a46b16865405d7b74eabf9).
-
-## Going back to HTML
-Himalaya provides a `stringify` method. The following example parses the HTML to JSON then parses the JSON back into HTML.
-
+### 安装
+```
+npm install we-rich --save
+```
 ```js
-import fs from 'fs'
-import {parse, stringify} from 'himalaya'
-
-const html = fs.readFileSync('/webpage.html', {encoding: 'utf8'})
-const json = parse(html)
-fs.writeFileSync('/webpage.html', stringify(json))
+const weRich = require('we-rich');
+var nodes = weRich.parse(html);
 ```
 
 ## 此项目基于 [himalaya](https://github.com/andrejewski/himalaya)
